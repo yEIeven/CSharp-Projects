@@ -1,0 +1,1 @@
+Some of my projects, there are a lot of more codes that i did, but here are some of them, i post it to show my code and my job, some of them are in wpf, some just api, some there are front or just back.
