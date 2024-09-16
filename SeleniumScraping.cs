@@ -18,30 +18,30 @@ namespace SeleniumScraping
             // Define o caminho para a pasta 'encartes' dentro de Downloads
             string downloadPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "encartes");
 
-            // Cria a pasta 'encartes' se ela n„o existir
+            // Cria a pasta 'encartes' se ela n√£o existir
             if (!Directory.Exists(downloadPath))
             {
                 Directory.CreateDirectory(downloadPath);
             }
 
-            // Nome do arquivo que ser· baixado (ajuste conforme o nome do arquivo que vocÍ espera baixar)
+            // Nome do arquivo que ser√° baixado (ajuste conforme o nome do arquivo que voc√™ espera baixar)
             string expectedFileName = "encarte.pdf"; // Substitua pelo nome exato do arquivo
             string fullFilePath = Path.Combine(downloadPath, expectedFileName);
 
-            // Verifica se o arquivo j· existe na pasta
+            // Verifica se o arquivo j√° existe na pasta
             if (File.Exists(fullFilePath))
             {
-                Console.WriteLine("O arquivo j· existe, pulando o download.");
+                Console.WriteLine("O arquivo j√° existe, pulando o download.");
                 return; // Encerra o teste sem fazer o download
             }
 
-            // Configura as opÁıes do Chrome para o download
+            // Configura as op√ß√µes do Chrome para o download
             ChromeOptions options = new ChromeOptions();
             options.AddUserProfilePreference("download.default_directory", downloadPath);
-            options.AddUserProfilePreference("download.prompt_for_download", false); // Desativa o pop-up de confirmaÁ„o de download
-            options.AddUserProfilePreference("plugins.always_open_pdf_externally", true); // ForÁa PDFs a serem baixados ao invÈs de abertos no navegador
+            options.AddUserProfilePreference("download.prompt_for_download", false); // Desativa o pop-up de confirma√ß√£o de download
+            options.AddUserProfilePreference("plugins.always_open_pdf_externally", true); // For√ßa PDFs a serem baixados ao inv√©s de abertos no navegador
 
-            // Inicializa o driver do Chrome com as opÁıes configuradas
+            // Inicializa o driver do Chrome com as op√ß√µes configuradas
             IWebDriver driver = new ChromeDriver(options);
 
             try
@@ -52,13 +52,13 @@ namespace SeleniumScraping
                 // Maximiza a janela do navegador
                 driver.Manage().Window.Maximize();
 
-                // Aguarda alguns segundos para garantir que o conte˙do seja carregado
+                // Aguarda alguns segundos para garantir que o conte√∫do seja carregado
                 System.Threading.Thread.Sleep(2000);
 
-                // Localiza o bot„o para baixar o encarte usando XPath (ajuste conforme necess·rio)
+                // Localiza o bot√£o para baixar o encarte usando XPath (ajuste conforme necess√°rio)
                 IWebElement button = driver.FindElement(By.XPath("//*[@id=\"content\"]/div/div[1]/div/div[3]/div[1]/div[1]/a[1]"));
 
-                // Clica no bot„o para baixar o encarte
+                // Clica no bot√£o para baixar o encarte
                 button.Click();
 
                 // Aguarda alguns segundos para garantir que o download seja processado
@@ -79,13 +79,13 @@ namespace SeleniumScraping
 
                 driver.Manage().Window.Maximize();
 
-                // Aguarda o carregamento da p·gina
+                // Aguarda o carregamento da p√°gina
                 System.Threading.Thread.Sleep(2000);
 
-                // Localiza o bot„o (ajuste conforme necess·rio)
+                // Localiza o bot√£o (ajuste conforme necess√°rio)
                 IWebElement newButton = driver.FindElement(By.XPath("//*[@id=\"main\"]/div[1]/div[1]/div/div/div/div[2]/div/a[1]"));
 
-                // Clica no bot„o
+                // Clica no bot√£o
                 newButton.Click();
 
                 System.Threading.Thread.Sleep(10000);
